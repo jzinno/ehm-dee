@@ -53,7 +53,7 @@ if solvent is True:
     print('Filling the box with water')
     modeller.addSolvent(forcefield, padding=1.0*nanometers)
 
-    print('Saving solvated strucutre')
+    print('Saving solvated structure')
     with open(sim_name + "_post-solvent.pdb","w") as postsolvent:    
         PDBFile.writeFile(modeller.topology, modeller.positions, postsolvent)   
 
@@ -73,7 +73,7 @@ if minimize is True:
 
     print('Minimization complete E: ' + str(state.getPotentialEnergy()))
 
-    print('Saving minimized strucutre')
+    print('Saving minimized structure')
     with open(sim_name + "_minimized.pdb","w") as minimized:
         positions = simulation.context.getState(getPositions=True).getPositions()
         PDBFile.writeFile(simulation.topology, positions, minimized)
