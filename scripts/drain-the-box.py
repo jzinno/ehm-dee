@@ -1,3 +1,7 @@
+"""
+Simply removes solvent from a PDB file
+"""
+
 import argparse
 
 # I/O
