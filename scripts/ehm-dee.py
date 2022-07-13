@@ -5,9 +5,9 @@ A small and simple Molecular Dynamics tool using OpenMM
 import sys
 import argparse
 from posixpath import basename
-from openmm.app import *
-from openmm import *
-from openmm.unit import *
+from simtk.openmm.app import *
+from simtk.openmm import *
+from simtk.unit import *
 
 # I/O
 parser = argparse.ArgumentParser(description="Runs a Molecular Dynamics Simulation")
