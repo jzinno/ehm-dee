@@ -94,6 +94,8 @@ modeller = Modeller(pdb.topology, pdb.positions)
 
 forcefield = ForceField("amber14-all.xml", "amber14/tip3pfb.xml")
 
+modeller.addHydrogens(forcefield)
+
 if solvent is True:
     print("Filling the box with water")
     modeller.addSolvent(forcefield, padding=1.0 * nanometers)
