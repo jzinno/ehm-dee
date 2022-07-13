@@ -139,7 +139,16 @@ simulation.reporters.append(
 
 simulation.reporters.append(
     StateDataReporter(
-        sys.stdout, report_interval, step=True, potentialEnergy=True, temperature=True
+        sys.stdout,
+        report_interval,
+        step=True,
+        potentialEnergy=True,
+        temperature=True,
+        speed=True,
+        elapsedTime=True,
+        progress=True,
+        remainingTime=True,
+        totalSteps=time_step,
     )
 )
 
@@ -150,6 +159,11 @@ simulation.reporters.append(
         step=True,
         potentialEnergy=True,
         temperature=True,
+        speed=True,
+        elapsedTime=True,
+        progress=True,
+        remainingTime=True,
+        totalSteps=time_step,
     )
 )
 
