@@ -1,7 +1,7 @@
 """
 A small and simple Molecular Dynamics tool using OpenMM
 """
-
+import os
 import sys
 import argparse
 from posixpath import basename
@@ -12,6 +12,13 @@ from openmm.unit import *
 # I/O
 parser = argparse.ArgumentParser(description="Runs a Molecular Dynamics Simulation")
 parser.add_argument("-i", "--input", dest="input", required=True, help="Input pdb file")
+parser.add_argument(
+    "-o",
+    "--output_path",
+    dest="output_path",
+    default="./output",
+    help="Path to save output files",
+)
 parser.add_argument(
     "-gpu",
     "--use_gpu",
@@ -51,6 +58,7 @@ args = parser.parse_args()
 
 # Arguments
 inputfile = args.input
+output_path = args.output_path
 gpu = args.gpu
 solvent = args.solvent
 minimize = args.minimize
@@ -60,6 +68,10 @@ report_interval = args.report_interval
 # Setting up ID name
 sim_name = basename(inputfile).rsplit(".", 1)[0]
 print("Preparing simulation of: " + sim_name)
+
+# Setting up output directory
+output_dir = os.path.join(output_path, sim_name)
+os.makedirs(output_dir)
 
 # Setting up platform
 if gpu is True:
@@ -81,7 +93,9 @@ if solvent is True:
     modeller.addSolvent(forcefield, padding=1.0 * nanometers)
 
     print("Saving solvated strucutre")
-    with open(sim_name + "_post-solvent.pdb", "w") as postsolvent:
+    with open(
+        os.path.join(output_dir, sim_name) + "_post-solvent.pdb", "w"
+    ) as postsolvent:
         PDBFile.writeFile(modeller.topology, modeller.positions, postsolvent)
 
 system = forcefield.createSystem(
@@ -108,12 +122,14 @@ if minimize is True:
     print("Minimization complete E: " + str(state.getPotentialEnergy()))
 
     print("Saving minimized strucutre")
-    with open(sim_name + "_minimized.pdb", "w") as minimized:
+    with open(os.path.join(output_dir, sim_name) + "_minimized.pdb", "w") as minimized:
         positions = simulation.context.getState(getPositions=True).getPositions()
         PDBFile.writeFile(simulation.topology, positions, minimized)
 
 
-simulation.reporters.append(PDBReporter(sim_name + "_out.pdb", report_interval))
+simulation.reporters.append(
+    PDBReporter(os.path.join(output_dir, sim_name) + "_out.pdb", report_interval)
+)
 
 simulation.reporters.append(
     StateDataReporter(
@@ -123,7 +139,7 @@ simulation.reporters.append(
 
 simulation.reporters.append(
     StateDataReporter(
-        sim_name + "_log.csv",
+        os.path.join(output_dir, sim_name) + "_log.csv",
         report_interval,
         step=True,
         potentialEnergy=True,
