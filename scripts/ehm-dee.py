@@ -16,6 +16,7 @@ parser.add_argument(
     "-o",
     "--output_path",
     dest="output_path",
+    type=str,
     default="./output",
     help="Path to save output files",
 )
@@ -23,6 +24,7 @@ parser.add_argument(
     "-gpu",
     "--use_gpu",
     dest="gpu",
+    type=bool,
     default=True,
     help="Enables running simulation on GPU",
 )
@@ -30,6 +32,7 @@ parser.add_argument(
     "-s",
     "--solvent",
     dest="solvent",
+    type=bool,
     default=True,
     help="Adds solvent to the simulation",
 )
@@ -37,6 +40,7 @@ parser.add_argument(
     "-m",
     "--minimize",
     dest="minimize",
+    type=bool,
     default=True,
     help="Performs Energy Minimization of the structure before simulation",
 )
@@ -44,6 +48,7 @@ parser.add_argument(
     "-t",
     "--time_step",
     dest="time_step",
+    type=int,
     default=5000,
     help="Number of time-steps to perform",
 )
@@ -51,6 +56,7 @@ parser.add_argument(
     "-r",
     "--report_interval",
     dest="report_interval",
+    type=int,
     default=1000,
     help="Frequency of simulation reports in time-steps",
 )
