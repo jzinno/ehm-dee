@@ -26,7 +26,6 @@ def read_pdb(pdbfile):
         for line in pdb:
             if line.startswith(("ATOM", "TER", "MODEL", "ENDMDL", "END")):
                 ATOM_list.append(line)
-    pdb.close()
     return ATOM_list
 
 
@@ -37,7 +36,6 @@ def write_pdb(outputfile):
     with open(outputfile, "w") as out:
         for line in ATOM_list:
             out.write(line)
-    out.close()
 
 
 ATOM_list = read_pdb(inputfile)
