@@ -6,7 +6,9 @@ This program is a Python script that runs a Molecular Dynamics (MD) simulation u
 
 To run the simulation, navigate to the directory containing the script and run:
 
+```
 python ehmdee.py --input input.pdb --output output.pdb --use_gpu --solvent --minimize --timesteps 10000 --report_interval 100
+```
 
 ## Command-line Arguments
 
