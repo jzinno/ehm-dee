@@ -1,6 +1,6 @@
 # ehmdee: Molecular Dynamics Simulation with OpenMM
 
-This program is a Python script that runs a Molecular Dynamics (MD) simulation using the OpenMM library. It is designed to be run from the command line and accepts several arguments that allow you to customize the simulation.
+This program is a Python script that runs a Molecular Dynamics (MD) simulation using the OpenMM library. It is designed to be run from the command line and accepts several arguments that allow you to customize the simulation. This program was designed with outputs from Alphafold multi-chain models in mind, but it should work with any PDB file.
 
 ## Getting Started
 
