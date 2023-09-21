@@ -150,7 +150,7 @@ def main():
     )
     parser.add_argument(
         "-t",
-        "--time_step",
+        "--timesteps",
         dest="time_step",
         type=int,
         default=5000,
